@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Wisdom extends StatefulWidget {
@@ -8,6 +10,8 @@ class Wisdom extends StatefulWidget {
 }
 
 class _WisdomState extends State<Wisdom> {
+  int _counter = 0;
+
   final List Quotes = [
     "”It is hard to fail but it is worse never to have tried to succeed”.—Theodore Roosevelt",
     "“It is hard to fail but it is worse never to have tried to succeed.”—Friedrich Nietzsche",
@@ -32,28 +36,40 @@ class _WisdomState extends State<Wisdom> {
     TextStyle styles = const TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 18,
-      color: Colors.black54,
+      color: Colors.black87,
     );
     return MaterialApp(
       title: "Quotes App",
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                Quotes[0],
-                style: styles,
-              ),
-              TextButton.icon(
-                onPressed: _showQuote,
-                icon: const Icon(
-                  Icons.wb_sunny,
-                  color: Colors.black,
+              Center(
+                child: Text(
+                  Quotes[_counter % Quotes.length],
+                  style: styles,
                 ),
-                label: Text(
-                  "Inspire Me",
-                  style: styles.copyWith(fontSize: 16.0),
+              ),
+              Divider(
+                thickness: 3.3,
+                color: Colors.orange.shade200,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: TextButton.icon(
+                  onPressed: _showQuote,
+                  icon: const Icon(
+                    Icons.wb_sunny,
+                    color: Colors.black,
+                  ),
+                  label: Text(
+                    "Inspire Me",
+                    style: styles.copyWith(fontSize: 16.0, color: Colors.white),
+                  ),
+                  style: TextButton.styleFrom(
+                      backgroundColor: Colors.greenAccent.shade400),
                 ),
               )
             ],
@@ -63,5 +79,9 @@ class _WisdomState extends State<Wisdom> {
     );
   }
 
-  void _showQuote() {}
+  void _showQuote() {
+    setState(() {
+      _counter++;
+    });
+  }
 }
