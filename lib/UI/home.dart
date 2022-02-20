@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class Wisdom extends StatefulWidget {
@@ -35,45 +33,58 @@ class _WisdomState extends State<Wisdom> {
   Widget build(BuildContext context) {
     TextStyle styles = const TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 18,
+      fontSize: 20,
       color: Colors.black87,
+      fontStyle: FontStyle.italic,
     );
     return MaterialApp(
       title: "Quotes App",
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Text(
-                  Quotes[_counter % Quotes.length],
-                  style: styles,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  width: 350,
+                  height: 200,
+                  margin: const EdgeInsets.all(30.0),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(14.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      Quotes[_counter % Quotes.length],
+                      style: styles,
+                    ),
+                  ),
                 ),
               ),
-              Divider(
-                thickness: 3.3,
-                color: Colors.orange.shade200,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: TextButton.icon(
-                  onPressed: _showQuote,
-                  icon: const Icon(
-                    Icons.wb_sunny,
-                    color: Colors.black,
-                  ),
-                  label: Text(
-                    "Inspire Me",
-                    style: styles.copyWith(fontSize: 16.0, color: Colors.white),
-                  ),
-                  style: TextButton.styleFrom(
-                      backgroundColor: Colors.greenAccent.shade400),
+            ),
+            const Divider(
+              thickness: 1.3,
+              color: Colors.greenAccent,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: TextButton.icon(
+                onPressed: _showQuote,
+                icon: const Icon(
+                  Icons.wb_sunny,
+                  color: Colors.black,
                 ),
-              )
-            ],
-          ),
+                label: Text(
+                  "Inspire Me",
+                  style: styles.copyWith(fontSize: 16.0, color: Colors.white),
+                ),
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.greenAccent.shade700),
+              ),
+            ),
+            const Spacer(),
+          ],
         ),
       ),
     );
